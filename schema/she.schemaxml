@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">preescolar</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="alumnos" view="colnames">
+<left>673</left>
+<top>161</top>
+<width>200</width>
+<height>297</height>
+<sql_create_table>CREATE TABLE `alumnos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_al` varchar(50) DEFAULT NULL,
+  `apellido_al` varchar(50) DEFAULT NULL,
+  `fecha_nac` date DEFAULT NULL,
+  `sexo` varchar(30) DEFAULT NULL,
+  `lugar_nacimiento` text,
+  `gsa` varchar(30) DEFAULT NULL,
+  `padres` varchar(30) DEFAULT NULL,
+  `gsa_id` int(11) DEFAULT NULL,
+  `datos1_id` int(11) DEFAULT NULL,
+  `datos2_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `gsa_id` (`gsa_id`),
+  KEY `datos_id` (`datos1_id`),
+  KEY `datos2_id` (`datos2_id`),
+  CONSTRAINT `alumnos_ibfk_4` FOREIGN KEY (`gsa_id`) REFERENCES `grado_seccion_anio` (`id`),
+  CONSTRAINT `alumnos_ibfk_5` FOREIGN KEY (`datos1_id`) REFERENCES `datos` (`id`),
+  CONSTRAINT `alumnos_ibfk_6` FOREIGN KEY (`datos2_id`) REFERENCES `datos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="grados" view="colnames">
+<left>1151</left>
+<top>90</top>
+<width>91</width>
+<height>122</height>
+<sql_create_table>CREATE TABLE `grados` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `grado` varchar(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="grado_seccion_anio" view="colnames">
+<left>939</left>
+<top>224</top>
+<width>123</width>
+<height>182</height>
+<sql_create_table>CREATE TABLE `grado_seccion_anio` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `grado_id` int(11) DEFAULT NULL,
+  `seccion_id` int(11) DEFAULT NULL,
+  `anio_id` int(11) DEFAULT NULL,
+  `gsa` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `grado_id` (`grado_id`),
+  KEY `seccion_id` (`seccion_id`),
+  KEY `anio_id` (`anio_id`),
+  CONSTRAINT `grado_seccion_anio_ibfk_1` FOREIGN KEY (`grado_id`) REFERENCES `grados` (`id`),
+  CONSTRAINT `grado_seccion_anio_ibfk_2` FOREIGN KEY (`seccion_id`) REFERENCES `secciones` (`id`),
+  CONSTRAINT `grado_seccion_anio_ibfk_3` FOREIGN KEY (`anio_id`) REFERENCES `anio_escolar` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="secciones" view="colnames">
+<left>1158</left>
+<top>260</top>
+<width>104</width>
+<height>122</height>
+<sql_create_table>CREATE TABLE `secciones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seccion` varchar(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="anio_escolar" view="colnames">
+<left>1156</left>
+<top>412</top>
+<width>81</width>
+<height>122</height>
+<sql_create_table>CREATE TABLE `anio_escolar` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `anio` year(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="maestros" view="colnames">
+<left>342</left>
+<top>31</top>
+<width>152</width>
+<height>220</height>
+<sql_create_table>CREATE TABLE `maestros` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_m` varchar(50) DEFAULT NULL,
+  `apellido_m` varchar(50) DEFAULT NULL,
+  `gsa` varchar(30) DEFAULT NULL,
+  `nombre_a` varchar(30) DEFAULT NULL,
+  `alumnos1_id` int(11) DEFAULT NULL,
+  `alumnos2_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `grados_secciones_id` (`alumnos1_id`),
+  KEY `alumnos2_id` (`alumnos2_id`),
+  CONSTRAINT `maestros_ibfk_1` FOREIGN KEY (`alumnos1_id`) REFERENCES `alumnos` (`id`),
+  CONSTRAINT `maestros_ibfk_2` FOREIGN KEY (`alumnos2_id`) REFERENCES `alumnos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="datos" view="colnames">
+<left>259</left>
+<top>344</top>
+<width>151</width>
+<height>225</height>
+<sql_create_table>CREATE TABLE `datos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cedula` int(11) DEFAULT NULL,
+  `nombre_re` varchar(30) DEFAULT NULL,
+  `apellido_re` varchar(30) DEFAULT NULL,
+  `telefonos` varchar(30) DEFAULT NULL,
+  `direccion` text,
+  `hijo` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
