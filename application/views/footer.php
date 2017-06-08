@@ -24,9 +24,7 @@
                     }, 'json');
                 }
             })
-        });
 
-        $(document).ready(function() {
             $('#municipios_id').on('change',function () {
                 var municipios_id = $(this).val();
                 $("#parroquias_id").find('option:gt(0)').remove().end();
