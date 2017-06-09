@@ -8,6 +8,7 @@ class AlumnosModel extends CI_Model {
     {
         parent::__construct();
     }
+
     public function listar()
     {
         $this->db->select('al.id, al.nombre_al, al.apellido_al, al.fecha_nac, al.sexo, al.padres, gsa.grado_id, gsa.seccion_id, gsa.anio_id, g.grado, s.seccion, ae.anio, d.nombre_re, e.estado, m.municipio');
@@ -21,6 +22,22 @@ class AlumnosModel extends CI_Model {
         $this->db->join('municipios AS m', 'm.id=al.municipios_id', 'inner');
         $query = $this->db->get();
         return $query->result();
+    }
+
+    public function detalles($id)
+    {
+        $this->db->select('al.id, al.nombre_al, al.apellido_al, al.fecha_nac, al.sexo, al.padres, al.datos1_id, al.datos2_id, al.estados_id, al.municipios_id, gsa.grado_id, gsa.seccion_id, gsa.anio_id, g.grado, s.seccion, ae.anio, d.nombre_re, e.estado, m.municipio');
+        $this->db->from($this->tabla.' AS al');
+        $this->db->join('grado_seccion_anio AS gsa', 'al.gsa_id=gsa.id', 'inner');
+        $this->db->join('grados AS g', 'gsa.grado_id=g.id', 'inner');
+        $this->db->join('secciones AS s', 'gsa.seccion_id=s.id', 'inner');
+        $this->db->join('anio_escolar AS ae', 'gsa.anio_id=ae.id', 'inner');
+        $this->db->join('datos AS d', 'd.id=al.datos1_id', 'inner');
+        $this->db->join('estados AS e', 'e.id=al.estados_id', 'inner');
+        $this->db->join('municipios AS m', 'm.id=al.municipios_id', 'inner');
+        $this->db->where('al.id', $id);
+        $query = $this->db->get();
+        return $query->row();
     }
 
         public function guardar($nombre_al, $apellido_al, $fecha_nac, $sexo, $gsa, $padres, $estados_id, $municipios_id)
@@ -54,7 +71,6 @@ class AlumnosModel extends CI_Model {
         $this->db->join('datos AS d', 'd.id=al.datos1_id', 'inner');
         $this->db->join('estados AS e', 'e.id=al.estados_id', 'inner');
         $this->db->join('municipios AS m', 'm.id=al.municipios_id', 'inner');
-        $this->db->join('datos AS d', 'd.id=al.datos1_id OR d.id=al.datos2_id', 'inner');
         $this->db->where('al.id', $id);
         $query = $this->db->get();
         return $query->row();

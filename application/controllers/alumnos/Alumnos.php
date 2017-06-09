@@ -12,14 +12,26 @@ class Alumnos extends CI_Controller {
     }
 
 	public function index()
+    {
+        $this->load->helper(array('dateformat', 'mayusculas', 'mayusculas1', 'unidad'));
+        $this->data['titulo'] = 'Alumnos';
+        $this->data['listar'] = $this->alumnos->listar();
+        $this->load->view('header', $this->data);
+        $this->load->view('alumnos/alumnos');
+        $this->load->view('footer');
+    }
+
+    public function detalles($id)
 	{
         $this->load->helper(array('dateformat', 'mayusculas', 'mayusculas1', 'unidad'));
-		$this->data['titulo'] = 'Alumnos';
-		$this->data['listar'] = $this->alumnos->listar();
-		$this->load->view('header', $this->data);
-		$this->load->view('alumnos/alumnos');
-		$this->load->view('footer');
-	}
+        $this->data['id']      = $id;
+        $this->data['titulo'] = 'Detalles de Alumno';
+        $this->data['alumnos'] = $this->alumnos->detalles($id);
+        $this->data['estados'] = $this->estados->listar();
+        $this->load->view('header', $this->data);
+        $this->load->view('alumnos/detalles', $this->data);
+        $this->load->view('footer');
+    }
 
 	public function registrar()
     {	

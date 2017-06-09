@@ -2,7 +2,7 @@
 <div class="container-fluid">
 	<footer>
 		<div class="container-flui text-right">
-			<h3 class="bg-success"><?php echo $titulo ?> </h3>
+			<h3 class="bg-danger"><?php echo $titulo ?> </h3>
 		</div>
 	</footer>
 
