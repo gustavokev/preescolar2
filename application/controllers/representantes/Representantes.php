@@ -25,9 +25,9 @@ class Representantes extends CI_Controller {
 
 	public function registrar()
     {	
-        $this->data['action'] = 'representantes/Representantes/guardar';
         $this->data['titulo'] = 'Registrar';
-        
+        $this->data['action'] = 'representantes/Representantes/guardar';
+        $this->data['estados'] = $this->estados->listar();
         $this->load->view('header', $this->data);
         $this->load->view('representantes/registro', $this->data);
         $this->load->view('footer');
@@ -42,12 +42,15 @@ class Representantes extends CI_Controller {
         $telefono_1 = $this->input->post('telefono_1');
         $telefono_2 = $this->input->post('telefono_2');
         $email = $this->input->post('email');
-        
-        $resultado = $this->representantes->guardar($cedula, $nombre_re, $apellido_re, $telefono_1, $telefono_2, $email);
+        $estatus = $this->input->post('estatus');
+        $estados_id = $this->input->post('estados_id');
+        $municipios_id = $this->input->post('municipios_id');
+        $parroquias_id = $this->input->post('parroquias_id');
+        $direccion = $this->input->post('direccion');
+        $resultado = $this->representantes->guardar($cedula, $nombre_re, $apellido_re, $telefono_1, $telefono_2, $email, $estatus, $estados_id, $municipios_id, $parroquias_id, $direccion);
         if($resultado){
             redirect(base_url('representantes/Representantes'));
         }else{
-            // $this->data['metodo'] = 'guardar';
             $this->data['error'] = 'error';
         	$this->data['action'] = 'representantes/Representantes/guardar';
             $this->data['url']   = 'representantes/Representantes';
@@ -62,7 +65,7 @@ class Representantes extends CI_Controller {
         $this->data['action'] = 'representantes/Representantes/editar';
         $this->data['titulo'] = 'Modificar';
         $this->data['representantes'] = $this->representantes->buscar($id);
-        // print_r($this->data);
+        $this->data['estados'] = $this->estados->listar();
         $this->load->view('header', $this->data);
         $this->load->view('representantes/registro', $this->data);
 		$this->load->view('footer'); 
@@ -77,8 +80,13 @@ class Representantes extends CI_Controller {
         $telefono_1 = $this->input->post('telefono_1');
         $telefono_2 = $this->input->post('telefono_2');
         $email = $this->input->post('email');
-
-        $resultado = $this->representantes->editar($id, $cedula, $nombre_re, $apellido_re, $telefono_1, $telefono_2, $email);
+        $estatus = $this->input->post('estatus');
+        $estados_id = $this->input->post('estados_id');
+        $municipios_id = $this->input->post('municipios_id');
+        $parroquias_id = $this->input->post('parroquias_id');
+        $direccion = $this->input->post('direccion');
+        
+        $resultado = $this->representantes->editar($id, $cedula, $nombre_re, $apellido_re, $telefono_1, $telefono_2, $email, $estatus, $estados_id, $municipios_id, $parroquias_id, $direccion);
         if($resultado){
             redirect(base_url('representantes/Representantes'));
         }else{
@@ -111,41 +119,5 @@ class Representantes extends CI_Controller {
         $this->load->view('header', $this->data);
         $this->load->view('representantes/buscar');
         $this->load->view('footer');
-    }
-
-    public function getAjaxmunicipio()
-    {
-        if($this->input->is_ajax_request() && $this->input->get("estado"))
-        {
-            $this->load->model("Municipiosmodel");
-            $estadoId = $this->input->get("estado");
-
-            $municipios = $this->municipios->getMunicipios($estadoId);
-
-            $data = array(
-                "municipios" => $municipios,
-
-            );
-
-            echo json_encode($data);
-        }
-    }
-
-    public function getAjaxparroquia()
-    {
-        if($this->input->is_ajax_request() && $this->input->get("municipio"))
-        {
-            $this->load->model("Parroquiasmodel");
-            $municipioId = $this->input->get("municipio");
-
-            $parroquias = $this->parroquias->getParroquias($municipioId);
-
-            $data = array(
-                "parroquias" => $parroquias,
-
-            );
-
-            echo json_encode($data);
-        }
     }
 }

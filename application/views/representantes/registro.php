@@ -17,7 +17,15 @@
         $telefono_1 = '';
         $telefono_2 = '';
         $email = '';
-        
+        $estatus = '';
+        $estados_id = '';
+        $estado = '';
+        $municipios_id = '';
+        $municipio = '';
+        $parroquias_id = '';
+        $parroquia = '';
+        $direccion = '';
+
         if(isset($id)){
             $cedula = $representantes->cedula;
             $nombre_re = $representantes->nombre_re;
@@ -25,7 +33,14 @@
             $telefono_1 = $representantes->telefono_1;
             $telefono_2 = $representantes->telefono_2;
             $email = $representantes->email;
-            
+            $estatus = $representantes->estatus;
+            $estados_id = $representantes->estados_id;
+            $estado = $representantes->estado;
+            $municipios_id = $representantes->municipios_id;
+            $municipio = $representantes->municipio;
+            $parroquias_id = $representantes->parroquias_id;
+            $parroquia = $representantes->parroquia;
+            $direccion = $representantes->direccion;
             
             ?>
             <input type="hidden" name="id" value="<?php echo $id?>">
@@ -34,59 +49,99 @@
         }
         ?>
 
-    <div class="form-group has-success">
-        <label for="cedula" class="control-label col-md-4">Cedula: </label>
-        <div class="col-md-4">
-        <input type="text" class="form-control" id="cedula" name="cedula" value="<?php echo $cedula?>" placeholder="">
+    <div class="row">
+
+    <div class="col-md-3 col-md-offset-2">
+        <label for="cedula" class="control-label">Cedula: </label>
+            <div class="form-group">
+                <em><input type="text" class="form-control" id="cedula" name="cedula" value="<?php echo $cedula?>" placeholder="Cedula:"></em>
+            </div>
+
+        <label for="apellido_re" class="control-label">Apellido: </label>
+            <div class="form-group">
+                <em><input type="text" class="form-control" id="apellido_re" name="apellido_re" value="<?php echo $apellido_re?>" placeholder="Apellido"></em>
+            </div>
+
+        <label for="telefono_2" class="control-label">Teléfono Local: </label>
+            <div class="form-group">
+                <em><input type="text" class="form-control" id="telefono_2" name="telefono_2" value="<?php echo $telefono_2?>" placeholder="Teléfono Local:"></em>
+            </div>
+
+        <label for="estados_id" class="control-label">Estado: </label>
+            <div class="form-group"> 
+                <em><select name="estados_id" id="estados_id" class="form-control">
+                    <option class="text-primary bg-success" value="<?php echo $estados_id?>">Selecciona: <?php echo $estado?></option>
+                        <option class="bg-danger text-center text-danger" value="">Nuevo Estado:</option>
+                            <?php
+                             foreach ($estados as $estado) {
+                            ?>
+                        <option class="bg-warning" value="<?php echo $estado->id; ?>"><?php echo $estado->estado ?></option>
+                        <?php
+                        }
+                    ?>
+                </select></em>
+            </div>
+
+        <label for="municipios_id" class="control-label">Municipio: </label>
+            <div class="form-group">
+                <em><select name="municipios_id" id="municipios_id" class="form-control">
+                    <option class="text-primary bg-success" value="<?php echo $municipios_id?>">Selecciona: <?php echo $municipio?></option>
+                </select></em>
+            </div>
+
+        <label for="parroquias_id" class="control-label">Sector: </label>
+            <div class="form-group">
+                <em><select name="parroquias_id" id="parroquias_id" class="form-control">
+                    <option class="text-primary bg-success" value="<?php echo $parroquias_id?>">Selecciona: <?php echo $parroquia?></option>
+                </select></em>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group has-warning">
-        <label for="nombre_re" class="control-label col-md-4">Nombre: </label>
-    <div class="col-md-4">
-        <input type="text" class="form-control" id="nombre_re" name="nombre_re" value="<?php echo $nombre_re?>" placeholder="">
+    <div class="col-md-1"></div>
+
+    <div class="col-md-3">
+        <label for="nombre_re" class="control-label">Nombre: </label>
+            <div class="form-group">
+                <em><input type="text" class="form-control" id="nombre_re" name="nombre_re" value="<?php echo $nombre_re?>" placeholder="Nombre:"></em>
+            </div>
+
+        <label for="estatus" class="control-label">Estatus: </label>
+            <div class="form-group">
+                <em><select name="estatus" id="estatus" class="form-control">
+                    <option value="r">Representante</option>
+                </select></em>
+            </div>
+
+        <label for="telefono_1" class="control-label">Teléfono Celular: </label>
+            <div class="form-group">
+                <em><input type="text" class="form-control" id="telefono_1" name="telefono_1" value="<?php echo $telefono_1?>" placeholder="Teléfono Celular"></em>
+            </div>
+
+        <label for="direccion" class="control-label">Direccion:</label>
+            <div class="form-group">
+                <textarea bg-danger rows="5" name="direccion" id="direccion" class="form-control text-left" placeholder="Escriba nombre de Calle y N° de casa:"><?php echo $direccion?>
+                </textarea>
+            </div>
+
+        <label for="email" class="control-label">Correo: </label>
+            <div class="form-group">
+                <em><input type="text" class="form-control" id="email" name="email" value="<?php echo $email?>" placeholder="Correo:"></em>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group has-error">
-        <label for="apellido_re" class="control-label col-md-4">Apellido: </label>
-        <div class="col-md-4">
-        <input type="text" class="form-control" id="apellido_re" name="apellido_re" value="<?php echo $apellido_re?>" placeholder="">
-        </div>
-    </div>
-
-    <div class="form-group has-warning">
-        <label for="telefono_1" class="control-label col-md-4">Tlf. Celular: </label>
-        <div class="col-md-4">        
-        <input type="text" class="form-control" id="telefono_1" name="telefono_1" value="<?php echo $telefono_1?>" placeholder="">
-        </div>
-    </div>
-
-    <div class="form-group has-error">
-        <label for="telefono_2" class="control-label col-md-4">Tlf. Local: </label>
-        <div class="col-md-4">        
-        <input type="text" class="form-control" id="telefono_2" name="telefono_2" value="<?php echo $telefono_2?>" placeholder="">
-        </div>
-    </div>
-
-    <div class="form-group has-success">
-        <label for="email" class="control-label col-md-4">Correo: </label>
-        <div class="col-md-4">        
-        <input type="text" class="form-control" id="email" name="email" value="<?php echo $email?>" placeholder="">
-        </div>
-    </div>
-
-
-
-    <div class="form-group">
-        <div class="col-md-4 col-md-offset-4">
+    <div class="row">
+            
+        <div class="col-md-3 col-md-offset-2">
             <button type="submit" class="btn btn-success btn-block">Guardar</button>
-            <a class="btn btn-primary btn-block" href="<?php echo base_url('representantes/Representantes')?>">Principal</a>
+        </div>
+
+        <div class="col-md-3 col-md-offset-1">
+            <a class="btn btn-primary btn-block" href="<?php echo base_url('representantes/Representantes')?>">Volver</a>
         </div>
     </div>
 
     </form>
-    
+
     <?php
     if(isset($error)){
         ?>
@@ -96,8 +151,8 @@
        }
     ?>
 
-
     </div>
+
 
     
       

@@ -10,11 +10,16 @@ class RepresentantesModel extends CI_Model {
     }
     public function listar()
     {
-        $query = $this->db->get($this->tabla);
+        $this->db->select('d.id, d.cedula, d.nombre_re, d.apellido_re, d.telefono_1, d.telefono_2, d.email, d.estatus, d.direccion, e.estado, m.municipio, p.parroquia');
+        $this->db->from($this->tabla.' AS d');
+        $this->db->join('estados AS e', 'e.id=d.estados_id', 'inner');
+        $this->db->join('municipios AS m', 'm.id=d.municipios_id', 'inner');
+        $this->db->join('parroquias AS p', 'p.id=d.parroquias_id', 'inner');
+        $query = $this->db->get();
         return $query->result();
     }
 
-        public function guardar($cedula, $nombre_re, $apellido_re, $telefono_1, $telefono_2, $email)
+        public function guardar($cedula, $nombre_re, $apellido_re, $telefono_1, $telefono_2, $email, $estatus, $estados_id, $municipios_id, $parroquias_id, $direccion)
     {
         $this->db->select('id');
         $this->db->where('cedula', $cedula);
@@ -28,20 +33,29 @@ class RepresentantesModel extends CI_Model {
             'apellido_re' => $apellido_re,
             'telefono_1' => $telefono_1,
             'telefono_2' => $telefono_2,
-            'email' => $email
+            'email' => $email,
+            'estatus' => $estatus,
+            'estados_id' => $estados_id,
+            'municipios_id' => $municipios_id,
+            'parroquias_id' => $parroquias_id,
+            'direccion' => $direccion
             );
         return $this->db->insert($this->tabla, $data);
     }
 
     public function buscar($id)
     {
-        $this->db->select('id, cedula, nombre_re, apellido_re, telefono_1, telefono_2, email');
-        $this->db->where('id', $id);
-        $query = $this->db->get($this->tabla);
+        $this->db->select('d.id, d.cedula, d.nombre_re, d.apellido_re, d.telefono_1, d.telefono_2, d.email, d.estatus, d.estados_id, d.municipios_id, d.parroquias_id, d.direccion, e.estado, m.municipio, p.parroquia');
+        $this->db->from($this->tabla.' AS d');
+        $this->db->join('estados AS e', 'e.id=d.estados_id', 'inner');
+        $this->db->join('municipios AS m', 'm.id=d.municipios_id', 'inner');
+        $this->db->join('parroquias AS p', 'p.id=d.parroquias_id', 'inner');
+        $this->db->where('d.id', $id);
+        $query = $this->db->get();
         return $query->row();
     }
 
-    public function editar($id, $cedula, $nombre_re, $apellido_re, $telefono_1, $telefono_2, $email)
+    public function editar($id, $cedula, $nombre_re, $apellido_re, $telefono_1, $telefono_2, $email, $estatus, $estados_id, $municipios_id, $parroquias_id, $direccion)
     {
         $this->db->select('id');
         $this->db->where('id!=', $id);
@@ -56,7 +70,12 @@ class RepresentantesModel extends CI_Model {
             'apellido_re' => $apellido_re,
             'telefono_1' => $telefono_1,
             'telefono_2' => $telefono_2,
-            'email' => $email
+            'email' => $email,
+            'estatus' => $estatus,
+            'estados_id' => $estados_id,
+            'municipios_id' => $municipios_id,
+            'parroquias_id' => $parroquias_id,
+            'direccion' => $direccion
             );
         $this->db->where('id', $id);
         $resultado = $this->db->update($this->tabla, $data);
