@@ -1,5 +1,7 @@
+	
 	<div class="container">
-<section class="bg-info main row">
+
+	<section class="bg-info main row">
 	
 	<aside class="col-md-2 text-center">
 	<h2 class="bg-danger">MENU</h2>
@@ -27,6 +29,7 @@
 	
 		<tr class="danger">
 			<th class="text-center"># ID</th>
+			<th class="text-center">Cédula Escolar</th>
 			<th class="text-center">Nombre y Apellido</th>
 			<th class="text-center">Grado y Seccion</th>
 			<th class="text-center">Año</th>
@@ -43,6 +46,7 @@
 
 		<tr class="">
             <td class="active text-right"><?php echo str_pad($i, 2, "0", STR_PAD_LEFT); ?></td>
+            <td class="success text-right"><?php echo $alumnos->cedula_escolar."-".$alumnos->cedula?></td>
 			<td class="success"><?php echo mayusculas1($alumnos->nombre_al)." ".mayusculas($alumnos->apellido_al)?></td>
 			<td class="active"><?php echo mayusculas1($alumnos->grado)." ".mayusculas($alumnos->seccion)?></td>
 			<td class="success text-right"><?php echo $alumnos->anio?></td>

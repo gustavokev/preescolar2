@@ -11,7 +11,7 @@ class AlumnosModel extends CI_Model {
 
     public function listar1()
     {
-        $this->db->select('al.id, al.nombre_al, al.apellido_al, al.fecha_nac, al.sexo, al.estados_id, al.municipios_id, gsa.grado_id, gsa.seccion_id, gsa.anio_id, g.grado, s.seccion, ae.anio, d.nombre_re, d.apellido_re, e.estado, m.municipio');
+        $this->db->select('al.id, al.nombre_al, al.apellido_al, al.fecha_nac, al.sexo, al.estados_id, al.municipios_id, gsa.grado_id, gsa.seccion_id, gsa.anio_id, g.grado, s.seccion, ae.anio, ad.cedula_escolar, d.cedula, d.nombre_re, d.apellido_re, e.estado, m.municipio');
         $this->db->from($this->tabla.' AS al');
         $this->db->join('grado_seccion_anio AS gsa', 'al.gsa_id=gsa.id', 'inner');
         $this->db->join('grados AS g', 'gsa.grado_id=g.id', 'inner');
@@ -81,7 +81,7 @@ class AlumnosModel extends CI_Model {
 
     public function buscar($id)
     {
-        $this->db->select('al.id, al.nombre_al, al.apellido_al, al.fecha_nac, al.sexo, al.estados_id, al.municipios_id, gsa.grado_id, gsa.seccion_id, gsa.anio_id, g.grado, s.seccion, ae.anio, d.nombre_re, d.apellido_re, e.estado, m.municipio');
+        $this->db->select('al.id, al.nombre_al, al.apellido_al, al.fecha_nac, al.sexo, al.estados_id, al.municipios_id, gsa.grado_id, gsa.seccion_id, gsa.anio_id, g.grado, s.seccion, ae.anio, ad.cedula_escolar, d.cedula, d.nombre_re, d.apellido_re, e.estado, m.municipio');
         $this->db->from($this->tabla.' AS al');
         $this->db->join('grado_seccion_anio AS gsa', 'al.gsa_id=gsa.id', 'inner');
         $this->db->join('grados AS g', 'gsa.grado_id=g.id', 'inner');
