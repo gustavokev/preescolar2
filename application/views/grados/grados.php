@@ -5,8 +5,8 @@
     <h2 class="bg-danger">MENU</h2>
     <br>
             <p><a class="btn btn-block btn-success" href="<?php echo base_url('alumnos/Alumnos') ?>">Alumnos</a>
-        	<a class="btn btn-block btn-success" href="<?php echo base_url('representantes/Representantes') ?>">Datos</a>
-        	<a class="btn btn-block btn-success" href="<?php echo base_url('docentes/Docentes') ?>">Datos</a>
+        	<a class="btn btn-block btn-success" href="<?php echo base_url('representantes/Representantes') ?>">Representantes</a>
+        	<a class="btn btn-block btn-success" href="<?php echo base_url('docentes/Docentes') ?>">Docentes</a>
             <a class="btn btn-block btn-success" href="<?php echo base_url('anio/Anio') ?>">Año Escolar</a>
             <a class="btn btn-block btn-success" href="<?php echo base_url('secciones/Secciones') ?>">Secciones</a>
 			<a class="btn btn-block btn-success" href="<?php echo base_url('estados/Estados') ?>">Estados</a>

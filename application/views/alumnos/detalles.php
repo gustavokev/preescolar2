@@ -6,25 +6,12 @@
 <div class="container">
 
         <?php
-        $nombre_al = '';
-        $apellido_al = '';
-        $fecha_nac = '';
-        $sexo = '';
-        $padres = '';
-        $lugar_nacimiento = '';
-        $estados_id = '';
-        $estado = '';
-        $municipios_id = '';
-        $municipio = '';
         if(isset($id)){
             $nombre_al = $alumnos->nombre_al;
             $apellido_al = $alumnos->apellido_al;
             $fecha_nac = $alumnos->fecha_nac;
             $sexo = $alumnos->sexo;
-            $padres = $alumnos->padres;
-            $estados_id = $alumnos->estados_id;
             $estado = $alumnos->estado;
-            $municipios_id = $alumnos->municipios_id;
             $municipio = $alumnos->municipio;
             ?>
             <input type="hidden" name="id" value="<?php echo $id?>">
@@ -58,13 +45,6 @@
     </div>
 
     <div class="form-group has-success col-md-3">
-        <label for="padres" class="control-label">Padres: 
-            <h3><?php echo mayusculas1($padres)?></h3>
-        </label>
-    </div>
-
-
-    <div class="form-group has-success col-md-3">
         <label for="estados_id" class="control-label">Estado: 
             <h3><?php echo mayusculas1($estado)?></h3>
     	</label>
@@ -76,7 +56,14 @@
         </label>
     </div>
 
-	</div>
+    </div>
+
+	<div class="form-group">
+        <div class="col-md-4 col-md-offset-4">
+            <a class="btn btn-primary btn-block" href="<?php echo base_url('alumnos/Alumnos')?>">Principal</a>
+        </div>
+    </div>
+	
 </div>
 
 

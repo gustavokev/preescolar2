@@ -12,7 +12,7 @@ class Secciones extends CI_Controller {
 
 	public function index()
 	{
-        $this->load->helper(array('dateformat'));
+        $this->load->helper(array('mayusculas'));
 		$this->data['titulo'] = 'Secciones';
 		$this->data['listar'] = $this->secciones->listar();
 		$this->load->view('header', $this->data);

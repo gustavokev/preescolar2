@@ -5,7 +5,7 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <div class="container text-center bg-success">
-<h2 class="text-danger">Docentes:</h2>
+<h2 class="text-danger">Docente:</h2>
 <div class="container">
 
     <form class="form-horizontal" action="<?php echo base_url($action) ?>" method="post">
@@ -14,8 +14,8 @@
         $cedula = '';
         $nombre_re = '';
         $apellido_re = '';
-        $telefono_1 = '';
-        $telefono_2 = '';
+        $telefono = '';
+        $celular = '';
         $email = '';
         $estatus = '';
         $estados_id = '';
@@ -30,8 +30,8 @@
             $cedula = $docentes->cedula;
             $nombre_re = $docentes->nombre_re;
             $apellido_re = $docentes->apellido_re;
-            $telefono_1 = $docentes->telefono_1;
-            $telefono_2 = $docentes->telefono_2;
+            $telefono = $docentes->telefono;
+            $telefono = $docentes->telefono;
             $email = $docentes->email;
             $estatus = $docentes->estatus;
             $estados_id = $docentes->estados_id;
@@ -62,9 +62,9 @@
                 <em><input type="text" class="form-control" id="apellido_re" name="apellido_re" value="<?php echo $apellido_re?>" placeholder="Apellido"></em>
             </div>
 
-        <label for="telefono_2" class="control-label text-info">Teléfono Local: </label>
+        <label for="telefono" class="control-label text-info">Teléfono Local: </label>
             <div class="form-group has-success">
-                <em><input type="text" class="form-control" id="telefono_2" name="telefono_2" value="<?php echo $telefono_2?>" placeholder="Teléfono Local:"></em>
+                <em><input type="text" class="form-control" id="telefono" name="telefono" value="<?php echo $telefono?>" placeholder="Teléfono Local:"></em>
             </div>
 
         <label for="estados_id" class="control-label text-info">Estado: </label>
@@ -105,16 +105,19 @@
                 <em><input type="text" class="form-control" id="nombre_re" name="nombre_re" value="<?php echo $nombre_re?>" placeholder="Nombre:"></em>
             </div>
 
-        <label for="estatus" class="control-label text-info">Estatus: </label>
+        <label for="estatus" class="control-label text-info">Estatus: <?php echo $estatus ?></label>
             <div class="form-group has-success">
                 <em><select name="estatus" id="estatus" class="form-control">
-                    <option value="d">Docente</option>
+                    <option value="<?php echo $estatus ?>">Selecciona: </option>
+                    <option value="d1">Docente Principal</option>
+                    <option value="d2">Docente Secundario</option>
+                    <option value="d3">Docente Terceario</option>
                 </select></em>
             </div>
-
-        <label for="telefono_1" class="control-label text-info">Teléfono Celular: </label>
+            
+        <label for="celular" class="control-label text-info">Teléfono Celular: </label>
             <div class="form-group has-success">
-                <em><input type="text" class="form-control" id="telefono_1" name="telefono_1" value="<?php echo $telefono_1?>" placeholder="Teléfono Celular"></em>
+                <em><input type="text" class="form-control" id="celular" name="celular" value="<?php echo $celular?>" placeholder="Teléfono Celular"></em>
             </div>
 
         <label for="direccion" class="control-label text-info">Direccion:</label>
@@ -151,7 +154,7 @@
        }
     ?>
 
-        </div>
+        <br></div>
     </div>  
 </div>  
 

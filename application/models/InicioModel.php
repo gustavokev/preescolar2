@@ -8,7 +8,7 @@ class InicioModel extends CI_Model {
     }
     public function listar()
     {
-        $query = $this->db->get('datos, alumnos');
+        $query = $this->db->get('alumnos');
         return $query->result();
     }
 }

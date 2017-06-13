@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Docentes extends CI_Controller {
 
-	public function __construct()
+    public function __construct()
     {
         parent::__construct();
         $this->load->model('DocentesModel', 'docentes');
@@ -13,24 +13,27 @@ class Docentes extends CI_Controller {
 
     }
 
-	public function index()
-	{
+    public function index()
+    {
         $this->load->helper(array('dateformat', 'mayusculas', 'mayusculas1', 'unidad'));
-		$this->data['titulo'] = 'Docentes';
-        $this->data['listar'] = $this->docentes->listar();
-		$this->load->view('header', $this->data);
+        $this->data['titulo'] = 'docentes';
+        $this->data['listar1'] = $this->docentes->listar1();
+        $this->data['listar2'] = $this->docentes->listar2();
+        $this->data['listar3'] = $this->docentes->listar3();
+        $this->load->view('header', $this->data);
         $this->load->view('docentes/docentes');
-		$this->load->view('footer');
-	}
+        $this->load->view('footer');
+    }
 
-	public function registrar()
-    {	
-        $this->data['titulo']  = 'Registrar';
+    public function registrar()
+    {   
+        $this->data['titulo'] = 'Registrar';
         $this->data['action'] = 'docentes/Docentes/guardar';
         $this->data['estados'] = $this->estados->listar();
         $this->load->view('header', $this->data);
         $this->load->view('docentes/registro', $this->data);
         $this->load->view('footer');
+        
     }
 
     public function guardar()
@@ -38,16 +41,15 @@ class Docentes extends CI_Controller {
         $cedula = $this->input->post('cedula');
         $nombre_re = $this->input->post('nombre_re');
         $apellido_re = $this->input->post('apellido_re');
-        $telefono_1 = $this->input->post('telefono_1');
-        $telefono_2 = $this->input->post('telefono_2');
+        $telefono = $this->input->post('telefono');
+        $celular = $this->input->post('celular');
         $email = $this->input->post('email');
         $estatus = $this->input->post('estatus');
         $estados_id = $this->input->post('estados_id');
         $municipios_id = $this->input->post('municipios_id');
         $parroquias_id = $this->input->post('parroquias_id');
         $direccion = $this->input->post('direccion');
-        
-        $resultado = $this->docentes->guardar($cedula, $nombre_re, $apellido_re, $telefono_1, $telefono_2, $email, $estatus, $estados_id, $municipios_id, $parroquias_id, $direccion);
+        $resultado = $this->docentes->guardar($cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estatus, $estados_id, $municipios_id, $parroquias_id, $direccion);
         if($resultado){
             redirect(base_url('docentes/Docentes'));
         }else{
@@ -68,7 +70,7 @@ class Docentes extends CI_Controller {
         $this->data['estados'] = $this->estados->listar();
         $this->load->view('header', $this->data);
         $this->load->view('docentes/registro', $this->data);
-		$this->load->view('footer'); 
+        $this->load->view('footer'); 
     }
 
     public function editar()
@@ -77,16 +79,16 @@ class Docentes extends CI_Controller {
         $cedula = $this->input->post('cedula');
         $nombre_re = $this->input->post('nombre_re');
         $apellido_re = $this->input->post('apellido_re');
-        $telefono_1 = $this->input->post('telefono_1');
-        $telefono_2 = $this->input->post('telefono_2');
+        $telefono = $this->input->post('telefono');
+        $celular = $this->input->post('celular');
         $email = $this->input->post('email');
         $estatus = $this->input->post('estatus');
         $estados_id = $this->input->post('estados_id');
         $municipios_id = $this->input->post('municipios_id');
         $parroquias_id = $this->input->post('parroquias_id');
         $direccion = $this->input->post('direccion');
-
-        $resultado = $this->docentes->editar($id, $cedula, $nombre_re, $apellido_re, $telefono_1, $telefono_2, $email, $estatus, $estados_id, $municipios_id, $parroquias_id, $direccion);
+        
+        $resultado = $this->docentes->editar($id, $cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estatus, $estados_id, $municipios_id, $parroquias_id, $direccion);
         if($resultado){
             redirect(base_url('docentes/Docentes'));
         }else{
@@ -115,7 +117,7 @@ class Docentes extends CI_Controller {
         $this->load->helper(array('dateformat', 'mayusculas', 'mayusculas1', 'unidad'));
         $this->data['docentes'] = $this->docentes->busca($this->buscar);
 
-        $this->data['titulo'] = 'Busqueda de Docente';
+        $this->data['titulo'] = 'Busqueda de docente';
         $this->load->view('header', $this->data);
         $this->load->view('docentes/buscar');
         $this->load->view('footer');

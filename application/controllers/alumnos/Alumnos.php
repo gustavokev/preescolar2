@@ -7,6 +7,8 @@ class Alumnos extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('AlumnosModel', 'alumnos');
+        $this->load->model('DocentesModel', 'datos');
+        $this->load->model('RepresentantesModel', 'datos');
         $this->load->model('EstadosModel', 'estados');
 
     }
@@ -15,7 +17,9 @@ class Alumnos extends CI_Controller {
     {
         $this->load->helper(array('dateformat', 'mayusculas', 'mayusculas1', 'unidad'));
         $this->data['titulo'] = 'Alumnos';
-        $this->data['listar'] = $this->alumnos->listar();
+        $this->data['listar1'] = $this->alumnos->listar1();
+        $this->data['listar2'] = $this->alumnos->listar2();
+        $this->data['listar3'] = $this->alumnos->listar3();
         $this->load->view('header', $this->data);
         $this->load->view('alumnos/alumnos');
         $this->load->view('footer');
@@ -26,8 +30,7 @@ class Alumnos extends CI_Controller {
         $this->load->helper(array('dateformat', 'mayusculas', 'mayusculas1', 'unidad'));
         $this->data['id']      = $id;
         $this->data['titulo'] = 'Detalles de Alumno';
-        $this->data['alumnos'] = $this->alumnos->detalles($id);
-        $this->data['estados'] = $this->estados->listar();
+        $this->data['alumnos'] = $this->alumnos->buscar($id);
         $this->load->view('header', $this->data);
         $this->load->view('alumnos/detalles', $this->data);
         $this->load->view('footer');
@@ -49,11 +52,9 @@ class Alumnos extends CI_Controller {
         $apellido_al = $this->input->post('apellido_al');
         $fecha_nac = $this->input->post('fecha_nac');
         $sexo = $this->input->post('sexo');
-        $gsa = $this->input->post('gsa');
-        $padres = $this->input->post('padres');
         $estados_id = $this->input->post('estados_id');
         $municipios_id = $this->input->post('municipios_id');
-        $resultado = $this->alumnos->guardar($nombre_al, $apellido_al, $fecha_nac, $sexo, $gsa, $padres, $estados_id, $municipios_id);
+        $resultado = $this->alumnos->guardar($nombre_al, $apellido_al, $fecha_nac, $sexo, $estados_id, $municipios_id);
         if($resultado){
             redirect(base_url('alumnos/Alumnos'));
         }else{
@@ -85,11 +86,9 @@ class Alumnos extends CI_Controller {
         $apellido_al = $this->input->post('apellido_al');
         $fecha_nac = $this->input->post('fecha_nac');
         $sexo = $this->input->post('sexo');
-        $gsa = $this->input->post('gsa');
-        $padres = $this->input->post('padres');
         $estados_id = $this->input->post('estados_id');
         $municipios_id = $this->input->post('municipios_id');
-        $resultado = $this->alumnos->editar($id, $nombre_al, $apellido_al, $fecha_nac, $sexo, $gsa, $padres, $estados_id, $municipios_id);
+        $resultado = $this->alumnos->editar($id, $nombre_al, $apellido_al, $fecha_nac, $sexo, $estados_id, $municipios_id);
         if($resultado){
             redirect(base_url('alumnos/Alumnos'));
         }else{

@@ -8,21 +8,52 @@ class DocentesModel extends CI_Model {
     {
         parent::__construct();
     }
-    public function listar()
+    public function listar1()
     {
-        $this->db->select('d.id, d.cedula, d.nombre_re, d.apellido_re, d.telefono_1, d.telefono_2, d.email, d.estatus, d.direccion, e.estado, m.municipio, p.parroquia');
+        $this->db->select('d.id, 
+        d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estatus, al.nombre_al, d.direccion, e.estado, m.municipio, p.parroquia');
         $this->db->from($this->tabla.' AS d');
+        $this->db->join('alumnos AS al', 'al.id=d.alumnos_id', 'inner');
         $this->db->join('estados AS e', 'e.id=d.estados_id', 'inner');
         $this->db->join('municipios AS m', 'm.id=d.municipios_id', 'inner');
         $this->db->join('parroquias AS p', 'p.id=d.parroquias_id', 'inner');
+        $this->db->where('d.estatus', 'd1');
         $query = $this->db->get();
         return $query->result();
     }
 
-        public function guardar($cedula, $nombre_re, $apellido_re, $telefono_1, $telefono_2, $email, $estatus, $estados_id, $municipios_id, $parroquias_id, $direccion)
+    public function listar2()
+    {
+        $this->db->select('d.id, 
+        d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estatus, al.nombre_al, d.direccion, e.estado, m.municipio, p.parroquia');
+        $this->db->from($this->tabla.' AS d');
+        $this->db->join('alumnos AS al', 'al.id=d.alumnos_id', 'inner');
+        $this->db->join('estados AS e', 'e.id=d.estados_id', 'inner');
+        $this->db->join('municipios AS m', 'm.id=d.municipios_id', 'inner');
+        $this->db->join('parroquias AS p', 'p.id=d.parroquias_id', 'inner');
+        $this->db->where('d.estatus', 'd2');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function listar3()
+    {
+        $this->db->select('d.id, 
+        d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estatus, al.nombre_al, d.direccion, e.estado, m.municipio, p.parroquia');
+        $this->db->from($this->tabla.' AS d');
+        $this->db->join('alumnos AS al', 'al.id=d.alumnos_id', 'inner');
+        $this->db->join('estados AS e', 'e.id=d.estados_id', 'inner');
+        $this->db->join('municipios AS m', 'm.id=d.municipios_id', 'inner');
+        $this->db->join('parroquias AS p', 'p.id=d.parroquias_id', 'inner');
+        $this->db->where('d.estatus', 'd3');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+        public function guardar($cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estatus, $estados_id, $municipios_id, $parroquias_id, $direccion)
     {
         $this->db->select('id');
-        $this->db->where('cedula', $cedula);
+        $this->db->where('estatus', $estatus);
         $query = $this->db->get($this->tabla);
         if($query->num_rows()> 0){
             return FALSE;
@@ -31,21 +62,21 @@ class DocentesModel extends CI_Model {
             'cedula' => $cedula,
             'nombre_re' => $nombre_re,
             'apellido_re' => $apellido_re,
-            'telefono_1' => $telefono_1,
-            'telefono_2' => $telefono_2,
+            'telefono' => $telefono,
+            'celular' => $celular,
             'email' => $email,
             'estatus' => $estatus,
             'estados_id' => $estados_id,
             'municipios_id' => $municipios_id,
             'parroquias_id' => $parroquias_id,
             'direccion' => $direccion
-            );   //print_r($data); exit;
+            );
         return $this->db->insert($this->tabla, $data);
     }
 
     public function buscar($id)
     {
-        $this->db->select('d.id, d.cedula, d.nombre_re, d.apellido_re, d.telefono_1, d.telefono_2, d.email, d.estatus, d.estados_id, d.municipios_id, d.parroquias_id, d.direccion, e.estado, m.municipio, p.parroquia');
+        $this->db->select('d.id, d.cedula, d.nombre_re, d.apellido_re, d.telefono, d.celular, d.email, d.estatus, d.estados_id, d.municipios_id, d.parroquias_id, d.direccion, e.estado, m.municipio, p.parroquia');
         $this->db->from($this->tabla.' AS d');
         $this->db->join('estados AS e', 'e.id=d.estados_id', 'inner');
         $this->db->join('municipios AS m', 'm.id=d.municipios_id', 'inner');
@@ -55,7 +86,7 @@ class DocentesModel extends CI_Model {
         return $query->row();
     }
 
-    public function editar($id, $cedula, $nombre_re, $apellido_re, $telefono_1, $telefono_2, $email, $estatus, $estados_id, $municipios_id, $parroquias_id, $direccion)
+    public function editar($id, $cedula, $nombre_re, $apellido_re, $telefono, $celular, $email, $estatus, $estados_id, $municipios_id, $parroquias_id, $direccion)
     {
         $this->db->select('id');
         $this->db->where('id!=', $id);
@@ -68,8 +99,8 @@ class DocentesModel extends CI_Model {
             'cedula' => $cedula,
             'nombre_re' => $nombre_re,
             'apellido_re' => $apellido_re,
-            'telefono_1' => $telefono_1,
-            'telefono_2' => $telefono_2,
+            'telefono' => $telefono,
+            'celular' => $celular,
             'email' => $email,
             'estatus' => $estatus,
             'estados_id' => $estados_id,

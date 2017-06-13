@@ -38,7 +38,7 @@
 
 		<tr class="">
             <td class="active text-right"><?php echo str_pad($i, 2, "0", STR_PAD_LEFT); ?></td>
-			<td class="success"><?php echo $secciones->seccion?></td>
+			<td class="success"><?php echo mayusculas($secciones->seccion)?></td>
 			
 			<td class="active text-center"><a class="btn bg-warning" href="<?php echo base_url('secciones/Secciones/modificar/'.$secciones->id) ?>">Editar</a></td>
 			<td class="active text-center"><a class="btn bg-danger" href="<?php echo base_url('secciones/Secciones/eliminar/'.$secciones->id) ?>">Eliminar</a></td>

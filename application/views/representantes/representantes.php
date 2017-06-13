@@ -29,14 +29,17 @@
 </div>
 
 		
+			<div class="text-center">
+				<h3 class="text-danger"><u>Representantes Principales: </u></h3>
+			</div>
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover table-condensed">
 	
 		<tr class="danger">
 			<th class="text-center"># ID</th>
 			<th class="text-center">Cedula</th>
-			<th class="text-center">Nombre</th>
-			<th class="text-center">Apellido</th>
+			<th class="text-center">Nombre y Apellido</th>
+			<th class="text-center">Nombre de Alumno</th>
 			<th class="text-center">Tlf. Celular</th>
 			<th class="text-center">Tlf. Local</th>
 			<th class="text-center">Correo Electrónico</th>
@@ -47,16 +50,16 @@
 	
 		<?php
 		$i=1;
-            foreach ($listar as $representantes) {
+            foreach ($listar1 as $representantes) {
                 ?>
 
 		<tr class="">
             <td class="active text-right"><?php echo str_pad($i, 2, "0", STR_PAD_LEFT); ?></td>
 			<td class="success text-right"><?php echo unidad($representantes->cedula)?></td>
-			<td class="info"><?php echo mayusculas1($representantes->nombre_re)?></td>
-			<td class="active"><?php echo mayusculas($representantes->apellido_re)?></td>
-			<td class="success text-right"><?php echo $representantes->telefono_1?></td>
-			<td class="active text-right"><?php echo $representantes->telefono_2?></td>
+			<td class="info"><?php echo mayusculas1($representantes->nombre_re)." ".mayusculas($representantes->apellido_re)?></td>
+			<td class="success text-right"><?php echo mayusculas1($representantes->nombre_al)." ".mayusculas($representantes->apellido_al)?></td>
+			<td class="success text-right"><?php echo $representantes->telefono?></td>
+			<td class="active text-right"><?php echo $representantes->celular?></td>
 			<td class="info text-center"><?php echo $representantes->email?></td>
 			
 			<td class="active text-center"><a class="btn bg-warning" href="<?php echo base_url('representantes/Representantes/modificar/'.$representantes->id) ?>">Editar</a></td>
@@ -70,6 +73,97 @@
 
 	</table>
 		</div>
+
+			<div class="text-center">
+				<h3 class="text-danger"><u>Representantes Secundarios: </u></h3>
+			</div>
+		<div class="table-responsive text-center">
+			<table class="table table-bordered table-hover table-condensed">
+	
+		<tr class="danger">
+			<th class="text-center"># ID</th>
+			<th class="text-center">Cedula</th>
+			<th class="text-center">Nombre y Apellido</th>
+			<th class="text-center">Nombre de Alumno</th>
+			<th class="text-center">Tlf. Celular</th>
+			<th class="text-center">Tlf. Local</th>
+			<th class="text-center">Correo Electrónico</th>
+			
+			<th class="text-center">Editar</th>
+			<th class="text-center">Editar</th>
+		</tr>
+	
+		<?php
+		$i=1;
+            foreach ($listar2 as $representantes) {
+                ?>
+
+		<tr class="">
+            <td class="active text-right"><?php echo str_pad($i, 2, "0", STR_PAD_LEFT); ?></td>
+			<td class="success text-right"><?php echo unidad($representantes->cedula)?></td>
+			<td class="info"><?php echo mayusculas1($representantes->nombre_re)." ".mayusculas($representantes->apellido_re)?></td>
+			<td class="success text-right"><?php echo mayusculas1($representantes->nombre_al)." ".mayusculas($representantes->apellido_al)?></td>
+			<td class="success text-right"><?php echo $representantes->telefono?></td>
+			<td class="active text-right"><?php echo $representantes->celular?></td>
+			<td class="info text-center"><?php echo $representantes->email?></td>
+			
+			<td class="active text-center"><a class="btn bg-warning" href="<?php echo base_url('representantes/Representantes/modificar/'.$representantes->id) ?>">Editar</a></td>
+			<td class="active text-center"><a class="btn bg-danger" href="<?php echo base_url('representantes/Representantes/eliminar/'.$representantes->id) ?>">Eliminar</a></td>
+		</tr>
+
+			<?php
+			$i++;
+                }
+                ?>
+
+	</table>
+		</div>
+
+			<div class="text-center">
+				<h3 class="text-danger"><u>Representantes Autorizados: </u></h3>
+			</div>
+		<div class="table-responsive text-center">
+			<table class="table table-bordered table-hover table-condensed">
+	
+		<tr class="danger">
+			<th class="text-center"># ID</th>
+			<th class="text-center">Cedula</th>
+			<th class="text-center">Nombre y Apellido</th>
+			<th class="text-center">Nombre de Alumno</th>
+			<th class="text-center">Tlf. Celular</th>
+			<th class="text-center">Tlf. Local</th>
+			<th class="text-center">Correo Electrónico</th>
+			
+			<th class="text-center">Editar</th>
+			<th class="text-center">Editar</th>
+		</tr>
+	
+		<?php
+		$i=1;
+            foreach ($listar3 as $representantes) {
+                ?>
+
+		<tr class="">
+            <td class="active text-right"><?php echo str_pad($i, 2, "0", STR_PAD_LEFT); ?></td>
+			<td class="success text-right"><?php echo unidad($representantes->cedula)?></td>
+			<td class="info"><?php echo mayusculas1($representantes->nombre_re)." ".mayusculas($representantes->apellido_re)?></td>
+			<td class="success text-right"><?php echo mayusculas1($representantes->nombre_al)." ".mayusculas($representantes->apellido_al)?></td>
+			<td class="success text-right"><?php echo $representantes->telefono?></td>
+			<td class="active text-right"><?php echo $representantes->celular?></td>
+			<td class="info text-center"><?php echo $representantes->email?></td>
+			
+			<td class="active text-center"><a class="btn bg-warning" href="<?php echo base_url('representantes/Representantes/modificar/'.$representantes->id) ?>">Editar</a></td>
+			<td class="active text-center"><a class="btn bg-danger" href="<?php echo base_url('representantes/Representantes/eliminar/'.$representantes->id) ?>">Eliminar</a></td>
+		</tr>
+
+			<?php
+			$i++;
+                }
+                ?>
+
+	</table>
+		</div>
+
 		<div class="col-md-4 col-md-offset-4">
     		<a class="btn btn-primary btn-block" href="<?php echo base_url('representantes/Representantes')?>">Arriba</a>
 		</div>
