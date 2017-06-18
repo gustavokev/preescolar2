@@ -1,0 +1,30 @@
+
+*
+{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#container
+{
+
+	background-color: black;
+}
+
+#fondo
+{
+	background-image: url(imagen/autobus.jpg);
+
+	background-color: orange;
+}
+
+#aside
+{
+	background-color: #4B5BDE;
+}
+
+#article
+{
+	background-color: #43C270;
+}

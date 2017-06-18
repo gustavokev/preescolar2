@@ -39,8 +39,13 @@
                 }
             })
         });
+
+        $('.myCarousel').carousel({
+            interval: 3000
+        });
     </script>
 </div>
 
 </body>
+
 </html>
