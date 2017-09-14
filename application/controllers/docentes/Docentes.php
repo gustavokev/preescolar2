@@ -17,9 +17,8 @@ class Docentes extends CI_Controller {
     {
         $this->load->helper(array('dateformat', 'mayusculas', 'mayusculas1', 'unidad'));
         $this->data['titulo'] = 'docentes';
-        $this->data['listar1'] = $this->docentes->listar1();
-        $this->data['listar2'] = $this->docentes->listar2();
-        $this->data['listar3'] = $this->docentes->listar3();
+        $this->data['listar'] = $this->docentes->listar();
+        
         $this->load->view('header', $this->data);
         $this->load->view('docentes/docentes');
         $this->load->view('footer');

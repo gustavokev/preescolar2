@@ -39,7 +39,6 @@
 			<th class="text-center"># ID</th>
 			<th class="text-center">Cedula</th>
 			<th class="text-center">Nombre y Apellido</th>
-			<th class="text-center">Nombre de Alumno</th>
 			<th class="text-center">Tlf. Local</th>
 			<th class="text-center">Tlf. Celular</th>
 			<th class="text-center">Correo Electrónico</th>
@@ -50,14 +49,13 @@
 	
 		<?php
 		$i=1;
-            foreach ($listar1 as $docentes) {
+            foreach ($listar as $docentes) {
                 ?>
 
 		<tr class="">
             <td class="active text-right"><?php echo str_pad($i, 2, "0", STR_PAD_LEFT); ?></td>
 			<td class="success text-right"><?php echo unidad($docentes->cedula)?></td>
 			<td class="info"><?php echo mayusculas1($docentes->nombre_re)." ".mayusculas($docentes->apellido_re)?></td>
-			<td class="success text-right"><?php echo $docentes->nombre_al?></td>
 			<td class="success text-right"><?php echo $docentes->telefono?></td>
 			<td class="active text-right"><?php echo $docentes->celular?></td>
 			<td class="info text-center"><?php echo $docentes->email?></td>
@@ -74,95 +72,6 @@
 	</table>
 		</div>
 
-			<div class="text-center">
-				<h3 class="text-danger"><u>Docentes Secundarios: </u></h3>
-			</div>
-		<div class="table-responsive text-center">
-			<table class="table table-bordered table-hover table-condensed">
-	
-		<tr class="danger">
-			<th class="text-center"># ID</th>
-			<th class="text-center">Cedula</th>
-			<th class="text-center">Nombre y Apellido</th>
-			<th class="text-center">Nombre de Alumno</th>
-			<th class="text-center">Tlf. Celular</th>
-			<th class="text-center">Tlf. Local</th>
-			<th class="text-center">Correo Electrónico</th>
-			
-			<th class="text-center">Editar</th>
-			<th class="text-center">Editar</th>
-		</tr>
-	
-		<?php
-		$i=1;
-            foreach ($listar2 as $docentes) {
-                ?>
-
-		<tr class="">
-            <td class="active text-right"><?php echo str_pad($i, 2, "0", STR_PAD_LEFT); ?></td>
-			<td class="success text-right"><?php echo unidad($docentes->cedula)?></td>
-			<td class="info"><?php echo mayusculas1($docentes->nombre_re)." ".mayusculas($docentes->apellido_re)?></td>
-			<td class="success text-right"><?php echo $docentes->nombre_al?></td>
-			<td class="success text-right"><?php echo $docentes->telefono?></td>
-			<td class="active text-right"><?php echo $docentes->celular?></td>
-			<td class="info text-center"><?php echo $docentes->email?></td>
-			
-			<td class="active text-center"><a class="btn bg-warning" href="<?php echo base_url('docentes/Docentes/modificar/'.$docentes->id) ?>">Editar</a></td>
-			<td class="active text-center"><a class="btn bg-danger" href="<?php echo base_url('docentes/Docentes/eliminar/'.$docentes->id) ?>">Eliminar</a></td>
-		</tr>
-
-			<?php
-			$i++;
-                }
-                ?>
-
-	</table>
-		</div>
-
-			<div class="text-center">
-				<h3 class="text-danger"><u>Docentes Tercearios: </u></h3>
-			</div>
-		<div class="table-responsive text-center">
-			<table class="table table-bordered table-hover table-condensed">
-	
-		<tr class="danger">
-			<th class="text-center"># ID</th>
-			<th class="text-center">Cedula</th>
-			<th class="text-center">Nombre y Apellido</th>
-			<th class="text-center">Nombre de Alumno</th>
-			<th class="text-center">Tlf. Local</th>
-			<th class="text-center">Tlf. Celular</th>
-			<th class="text-center">Correo Electrónico</th>
-			
-			<th class="text-center">Editar</th>
-			<th class="text-center">Editar</th>
-		</tr>
-	
-		<?php
-		$i=1;
-            foreach ($listar3 as $docentes) {
-                ?>
-
-		<tr class="">
-            <td class="active text-right"><?php echo str_pad($i, 2, "0", STR_PAD_LEFT); ?></td>
-			<td class="success text-right"><?php echo unidad($docentes->cedula)?></td>
-			<td class="info"><?php echo mayusculas1($docentes->nombre_re)." ".mayusculas($docentes->apellido_re)?></td>
-			<td class="success text-right"><?php echo $docentes->nombre_al?></td>
-			<td class="success text-right"><?php echo $docentes->telefono?></td>
-			<td class="active text-right"><?php echo $docentes->celular?></td>
-			<td class="info text-center"><?php echo $docentes->email?></td>
-			
-			<td class="active text-center"><a class="btn bg-warning" href="<?php echo base_url('docentes/Docentes/modificar/'.$docentes->id) ?>">Editar</a></td>
-			<td class="active text-center"><a class="btn bg-danger" href="<?php echo base_url('docentes/Docentes/eliminar/'.$docentes->id) ?>">Eliminar</a></td>
-		</tr>
-
-			<?php
-			$i++;
-                }
-                ?>
-
-	</table>
-		</div>
 
 		<div class="col-md-4 col-md-offset-4">
     		<a class="btn btn-primary btn-block" href="<?php echo base_url('docentes/Docentes')?>">Arriba</a>
